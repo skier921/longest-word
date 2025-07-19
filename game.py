@@ -1,5 +1,6 @@
 import string
 import random
+import requests
 
 class Game:
     def __init__(self):
@@ -23,3 +24,9 @@ game = Game()
 print(game.grid) # --> OQUWRBAZE
 my_word = "BAROQUE"
 game.is_valid(my_word) # --> True
+
+    @staticmethod
+    def __check_dictionary(word):
+        response = requests.get(f"https://dictionary.lewagon.com/{word}")
+        json_response = response.json()
+        return json_response['found']
